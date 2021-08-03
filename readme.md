@@ -1,0 +1,1 @@
+This is a simple library that I'm creating to help me with my new WordPress plugin projects
