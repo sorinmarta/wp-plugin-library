@@ -7,6 +7,7 @@ class WPPL_Loader{
 
     private function require_lib(){
         require 'wppl-view.php';
+        require 'wppl-form.php';
     }
 }
 

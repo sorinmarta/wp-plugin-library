@@ -2,9 +2,56 @@
 
 class WPPL_View{
     public function __construct($view){
+        $this->add_styling();
         $this->add_notifications();
 
         require WPPL_PATH . "/app/views/$view.php";
+    }
+
+    private function add_styling(){
+        ?>
+            <style>
+                .wppl-message-container .wppl-notice{
+                    position: relative;
+                    padding: .75rem 1.25rem;
+                    margin-bottom: 1rem;
+                    border: 1px solid transparent;
+                    border-radius: .25rem;
+                    margin-right:1.25rem;
+                    margin-top:1rem;
+                }
+
+                .wppl-message-container .wppl-alert{
+                    background-color: #fff3cd;
+                    color: #856404;
+                    border-color: #ffeeba;
+                }
+
+                .wppl-message-container .wppl-success{
+                    background-color:#d4edda;
+                    color: #155724;
+                    border-color:#c3e6cb;
+                }
+
+                .wppl-message-container .wppl-error{
+                    background-color: #f8d7da;
+                    color: #721c24;
+                    border-color: #f5c6cb;
+                }
+
+                .wppl-input{
+                    display:block;
+                }        
+
+                .wppl-label{
+                    display:block;
+                }
+
+                .wppl-submit{
+                    margin-top:15px;
+                }
+            </style>
+        <?php
     }
 
     private function add_notifications(){
@@ -18,36 +65,6 @@ class WPPL_View{
 
     private function show_redirect_message($type, $message){
         ?>
-        <style>
-        .wppl-message-container .wppl-notice{
-            position: relative;
-            padding: .75rem 1.25rem;
-            margin-bottom: 1rem;
-            border: 1px solid transparent;
-            border-radius: .25rem;
-            margin-right:1.25rem;
-            margin-top:1rem;
-        }
-
-        .wppl-message-container .wppl-alert{
-            background-color: #fff3cd;
-            color: #856404;
-            border-color: #ffeeba;
-        }
-
-        .wppl-message-container .wppl-success{
-            background-color:#d4edda;
-            color: #155724;
-            border-color:#c3e6cb;
-        }
-
-        .wppl-message-container .wppl-error{
-            background-color: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
-        }
-        </style>
-
         <div class="wppl-message-container">
             <div class="wppl-notice <?php echo $type; ?>">
                 <p><?php echo $message; ?></p>
