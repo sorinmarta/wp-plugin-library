@@ -58,6 +58,7 @@ class WPPL_Form{
      * @param array $input
      * @return void
      */
+    
     private function render_input(array $input){
         echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] .'" name="' . $input['name'] . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? $input['value'] : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
     }
@@ -71,6 +72,7 @@ class WPPL_Form{
      * @param array $input
      * @return void
      */
+
     private function render_select(array $input){
         echo '<' . $input['element'] . ' name="' . $input['name'] . '" id="' . $input['id'] . 'class="wppl-input ' .((isset($input['class']) ? $input['class'] : '')) . '">';
         $this->option_loop($input['options']);
@@ -86,6 +88,7 @@ class WPPL_Form{
      * @param array $options
      * @return void
      */
+
     private function option_loop(array $options){
         foreach($options as $option){
             echo '<option value="' . $option['value'] . '" id="'. $option['id'] . '">' . $option['text'] . '</option>';
@@ -93,13 +96,38 @@ class WPPL_Form{
     }
 
     /**
+     * Render the label
+     * 
      * REQUIRED
-     * - Label
+     * - Input
+     *
+     * @param array $input
+     * @return void
      */
 
     private function render_label(array $input){
         echo '<label class="wppl-input" for="' . $input['id'] . '">';
         echo $input['label'];
         echo '</label>';
+    }
+
+    /**
+     * A helper that will check if the provided nonce is correct
+     *
+     * REQUIRED
+     * - Nonce
+     * - Tag
+     * 
+     * @param string $nonce
+     * @param string $tag
+     * @return void
+     */
+
+    static function check_nonce(string $nonce, string $tag){
+        if( isset($nonce) && wp_verify_nonce($nonce, $tag) ) {
+            return true;
+        }
+
+        return false;
     }
 }

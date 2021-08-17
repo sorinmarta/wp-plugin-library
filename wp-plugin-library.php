@@ -24,7 +24,12 @@
      }
 
      public function callback(){
-         new WPPL_View('test');
+         $nonce = wp_create_nonce('sorin-test');
+         if(WPPL_Form::check_nonce($nonce, 'sorin-test')){
+             echo 'works';
+         }else{
+             echo 'no works';
+         }
      }
  }
 

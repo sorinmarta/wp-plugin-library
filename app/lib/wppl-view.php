@@ -8,6 +8,12 @@ class WPPL_View{
         require WPPL_PATH . "/app/views/$view.php";
     }
 
+    /**
+     * Adds the required CSS for the views
+     *
+     * @return void
+     */
+
     private function add_styling(){
         ?>
             <style>
@@ -54,6 +60,12 @@ class WPPL_View{
         <?php
     }
 
+    /**
+     * Add the notifications partial
+     *
+     * @return void
+     */
+
     private function add_notifications(){
         if(isset($_COOKIE['wppl_redirect_type']) && isset($_COOKIE['wppl_redirect_message'])){
             $type = $this->generate_message_class($_COOKIE['wppl_redirect_type']);
@@ -63,7 +75,15 @@ class WPPL_View{
         }
     }
 
-    private function show_redirect_message($type, $message){
+    /**
+     * The notifications partial
+     *
+     * @param string $type
+     * @param string $message
+     * @return void
+     */
+
+    private function show_redirect_message(string $type, string $message){
         ?>
         <div class="wppl-message-container">
             <div class="wppl-notice <?php echo $type; ?>">
@@ -78,7 +98,14 @@ class WPPL_View{
         <?php
     }
 
-    private function generate_message_class($type){
+    /**
+     * Generate which HTML class to assign
+     *
+     * @param string $type
+     * @return void
+     */
+    
+    private function generate_message_class(string $type){
         switch ($type){
             case 'success':
                 return 'wppl-success';
