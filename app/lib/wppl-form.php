@@ -14,7 +14,7 @@ class WPPL_Form{
         ?>
             <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST">
                 <input type="hidden" name="action" value="<?php echo $action; ?>">
-                <input type="hidden" name="mfss_nonce" value="<?php echo $nonce; ?>">
+                <input type="hidden" name="nonce" value="<?php echo $nonce; ?>">
                 <?php
                     $this->loop_inputs($inputs);
                 ?>

@@ -11,24 +11,27 @@
  * Author URI:        https://sorinmarta.com
  */
 
- define('WPPL_PATH', WP_PLUGIN_DIR . '/wp-plugin-library');
+ define('WPPL_SLUG', 'wp-plugin-library');
+ define('WPPL_PATH', WP_PLUGIN_DIR . '/' . WPPL_SLUG);
 
  class WP_Plugin_Helper{
      public function __construct(){
+         $this->check_php_version();
+         $this->check_wp_version();
          require WPPL_PATH . '/app/lib/wppl-loader.php';
-         add_action('admin_menu', array($this, 'admin_page'));
      }
 
-     public function admin_page(){
-         add_menu_page('WP Plugin library', 'WP Plugin library', 'manage_options','wp-plugin-library', array($this, 'callback'));
+     private function check_php_version(){
+        if(phpversion() < 7.4){
+            wp_die(__('PHP version cannot be lower than 7.4', WPPL_SLUG));
+        }
      }
 
-     public function callback(){
-         $nonce = wp_create_nonce('sorin-test');
-         if(WPPL_Form::check_nonce($nonce, 'sorin-test')){
-             echo 'works';
-         }else{
-             echo 'no works';
+     private function check_wp_version(){
+         global $wp_version;
+
+         if($wp_version < 4.5){
+            wp_die(__('WordPress version cannot be lower than 4.5', WPPL_SLUG));
          }
      }
  }
