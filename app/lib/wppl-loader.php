@@ -2,17 +2,27 @@
 
 class WPPL_Loader{
     public function __construct(){
-        $this->require_help();
-        $this->require_lib();
+        $this->help();
+        $this->lib();
+        $this->models();
+        $this->controllers();
     }
 
-    private function require_lib(){
+    private function lib(){
         require 'wppl-view.php';
         require 'wppl-form.php';
     }
 
-    private function require_help(){
+    private function help(){
         require WPPL_PATH . '/app/helpers/wppl-helper.php';
+    }
+
+    private function models(){
+        // Add your models
+    }
+
+    private function controllers(){
+        // Add your controllers
     }
 }
 

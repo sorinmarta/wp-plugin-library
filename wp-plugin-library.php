@@ -13,6 +13,9 @@
 
  define('WPPL_SLUG', 'wp-plugin-library');
  define('WPPL_PATH', WP_PLUGIN_DIR . '/' . WPPL_SLUG);
+ define('WPPL_APP', WPPL_PATH . '/app');
+ define('WPPL_CONTROLLER', WPPL_APP . '/controllers');
+ define('WPPL_MODEL', WPPL_APP . '/models');
 
  class WP_Plugin_Helper{
      public function __construct(){
