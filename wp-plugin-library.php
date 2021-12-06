@@ -22,16 +22,6 @@
          $this->check_php_version();
          $this->check_wp_version();
          require WPPL_PATH . '/app/lib/wppl-loader.php';
-         
-         add_action('admin_menu', array($this, 'page'));
-     }
-
-     public function page(){
-         add_menu_page('WPPL Test', 'WPPL Test', 'manage_options', 'wppl-test', array($this, 'callback'));
-     }
-
-     public function callback(){
-         new WPPL_View('settings');
      }
 
      private function check_php_version(){
