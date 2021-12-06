@@ -2,12 +2,12 @@
 
 /**
  * Plugin Name:       WordPress Plugin Library
- * Plugin URI:        https://github.com/sorinmarta/wp-plugin-library
+ * Plugin URI:        https://huskystudios.digital/wp-plugin-library
  * Description:       A library that helps me and other developers to create other plugins easily
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
- * Author:            Sorin Marta
+ * Author:            Sorin Marta @ HuskyStudios
  * Author URI:        https://sorinmarta.com
  */
 
@@ -22,6 +22,16 @@
          $this->check_php_version();
          $this->check_wp_version();
          require WPPL_PATH . '/app/lib/wppl-loader.php';
+         
+         add_action('admin_menu', array($this, 'page'));
+     }
+
+     public function page(){
+         add_menu_page('WPPL Test', 'WPPL Test', 'manage_options', 'wppl-test', array($this, 'callback'));
+     }
+
+     public function callback(){
+         new WPPL_View('settings');
      }
 
      private function check_php_version(){

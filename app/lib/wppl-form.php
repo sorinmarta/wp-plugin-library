@@ -106,7 +106,7 @@ class WPPL_Form{
      */
 
     private function render_label(array $input){
-        echo '<label class="wppl-input" for="' . $input['id'] . '">';
+        echo '<label id="'. $input['id'] . '" class="wppl-input wppl-label ' . ((isset($input['class']) ? $input['class'] : '')) . '" for="' . $input['for'] . '">';
         echo $input['label'];
         echo '</label>';
     }
