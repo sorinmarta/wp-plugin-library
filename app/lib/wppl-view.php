@@ -4,9 +4,12 @@ class WPPL_View{
     private $view;
     private $with;
 
-    public function __construct(string $view, array $with = []){
+    public function __construct(string $view, mixed $with = false){
         $this->view = $view;
-        $this->with = $with;
+
+        if($with){
+            $this->with = $with;
+        }
 
         $this->render();
     }
@@ -127,7 +130,7 @@ class WPPL_View{
      *
      * @return mixed
      */
-    
+
      private function render(){
          $this->add_styling();
          $this->add_notifications();
