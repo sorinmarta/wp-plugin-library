@@ -1,11 +1,14 @@
 <?php
 
 class WPPL_View{
-    public function __construct($view){
-        $this->add_styling();
-        $this->add_notifications();
+    private $view;
+    private $with;
 
-        require WPPL_PATH . "/app/views/$view.php";
+    public function __construct(string $view, array $with = []){
+        $this->view = $view;
+        $this->with = $with;
+
+        $this->render();
     }
 
     /**
@@ -117,5 +120,24 @@ class WPPL_View{
                 return 'wppl-error';
                 break;
         }
+     }
+
+    /**
+     * Renders the page with the values passed
+     *
+     * @return mixed
+     */
+    
+     private function render(){
+         $this->add_styling();
+         $this->add_notifications();
+
+         if(!empty($this->with)){
+             foreach($this->with as $key => $value){
+                 ${$key} = $value;
+             }
+         }
+
+         return require WPPL_PATH . '/app/views/' . $this->view . '.php';
      }
 }
