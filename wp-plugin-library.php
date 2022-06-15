@@ -1,5 +1,9 @@
 <?php
 
+namespace WPPL;
+
+use WPPL\Lib\WPPL_View;
+
 /**
  * Plugin Name:       WordPress Plugin Library
  * Plugin URI:        https://huskystudios.digital/wp-plugin-library
@@ -11,26 +15,41 @@
  * Author URI:        https://sorinmarta.com
  */
 
- define('WPPL_SLUG', 'wp-plugin-library');
- define('WPPL_PATH', WP_PLUGIN_DIR . '/' . WPPL_SLUG);
- define('WPPL_APP', WPPL_PATH . '/app');
- define('WPPL_CONTROLLER', WPPL_APP . '/controllers');
- define('WPPL_MODEL', WPPL_APP . '/models');
+ const WPPL_SLUG = 'wp-plugin-library' ;
+ const WPPL_PATH = WP_PLUGIN_DIR . '/' . WPPL_SLUG;
+ const WPPL_APP = WPPL_PATH . '/app';
+ const WPPL_LIB = WPPL_APP . '/lib';
+ const WPPL_HELPER = WPPL_APP . '/helpers';
+ const WPPL_CONTROLLER = WPPL_APP . '/controllers';
+ const WPPL_MODEL =  WPPL_APP . '/models';
 
  class WP_Plugin_Helper{
-     public function __construct(){
+     public function __construct()
+     {
          $this->check_php_version();
          $this->check_wp_version();
          require WPPL_PATH . '/app/lib/wppl-loader.php';
      }
 
-     private function check_php_version(){
-        if(phpversion() < 7.4){
-            wp_die(__('PHP version cannot be lower than 7.4', WPPL_SLUG));
+     /**
+      * Checks if the PHP version is compatible
+      *
+      * @return void
+      */
+     private function check_php_version(): void
+     {
+        if(phpversion() < 8.0){
+            wp_die(__('PHP version cannot be lower than 8.0', WPPL_SLUG));
         }
      }
 
-     private function check_wp_version(){
+     /**
+      * Checks if the WP version is compatible
+      *
+      * @return void
+      */
+     private function check_wp_version(): void
+     {
          global $wp_version;
 
          if($wp_version < 4.5){

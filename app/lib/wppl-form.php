@@ -1,5 +1,7 @@
 <?php
 
+namespace WPPL\Lib;
+
 class WPPL_Form{
 
     /**
@@ -10,7 +12,8 @@ class WPPL_Form{
      * @param array $inputs - The array of inputs
      */
 
-    public function __construct(string $action, string $nonce, array $inputs){
+    public function __construct(string $action, string $nonce, array $inputs)
+    {
         ?>
             <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST">
                 <input type="hidden" name="action" value="<?php echo $action; ?>">
@@ -29,7 +32,8 @@ class WPPL_Form{
      * @return void
      */
 
-    private function loop_inputs(array $inputs){
+    private function loop_inputs(array $inputs): void
+    {
         foreach($inputs as $input){
             if(isset($input['label'])){
                 $this->render_label($input);
@@ -59,7 +63,8 @@ class WPPL_Form{
      * @return void
      */
     
-    private function render_input(array $input){
+    private function render_input(array $input): void
+    {
         echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] .'" name="' . $input['name'] . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? $input['value'] : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
     }
 
@@ -73,7 +78,8 @@ class WPPL_Form{
      * @return void
      */
 
-    private function render_select(array $input){
+    private function render_select(array $input): void
+    {
         echo '<' . $input['element'] . ' name="' . $input['name'] . '" id="' . $input['id'] . 'class="wppl-input ' .((isset($input['class']) ? $input['class'] : '')) . '">';
         $this->option_loop($input['options']);
         echo '</'. $input['element'] . '>';
@@ -89,7 +95,8 @@ class WPPL_Form{
      * @return void
      */
 
-    private function option_loop(array $options){
+    private function option_loop(array $options): void
+    {
         foreach($options as $option){
             echo '<option value="' . $option['value'] . '" id="'. $option['id'] . '">' . $option['text'] . '</option>';
         }
@@ -105,7 +112,8 @@ class WPPL_Form{
      * @return void
      */
 
-    private function render_label(array $input){
+    private function render_label(array $input): void
+    {
         echo '<label id="'. $input['id'] . '" class="wppl-input wppl-label ' . ((isset($input['class']) ? $input['class'] : '')) . '" for="' . $input['for'] . '">';
         echo $input['label'];
         echo '</label>';
@@ -123,8 +131,9 @@ class WPPL_Form{
      * @return void
      */
 
-    static function check_nonce(string $nonce, string $tag){
-        if( isset($nonce) && wp_verify_nonce($nonce, $tag) ) {
+    static function check_nonce(string $nonce, string $tag): bool
+    {
+        if( wp_verify_nonce($nonce, $tag) ) {
             return true;
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace WPPL\Helpers;
+
 class WPPL_Helper{
     static function dd($value){
         echo '<pre>';
