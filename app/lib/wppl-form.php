@@ -6,7 +6,7 @@ class WPPL_Form{
     private string $action;
     private string $nonce;
     private array $inputs = [];
-    private array $options = [];
+    private string $id;
 
     /**
      * The constructor that generates the form
@@ -16,7 +16,7 @@ class WPPL_Form{
      * @param array $inputs - The array of inputs
      */
 
-    public function __construct(string $action, mixed $nonce = false)
+    public function __construct(string $action, mixed $nonce = false, mixed $id = false)
     {
         $this->action = $action;
 
@@ -24,6 +24,10 @@ class WPPL_Form{
             $this->nonce = wp_create_nonce($nonce);
         }else{
             $this->nonce = wp_create_nonce($action);
+        }
+
+        if(!$id){
+            $this->id = uniqid('form-');
         }
     }
 
@@ -58,13 +62,39 @@ class WPPL_Form{
             wppl_dd("The select element doesn't exist");
         }
 
-        $select = $this->inputs[$select_id];
+        if(!is_array($this->inputs[$select_id])){
+            $this->inputs[$select_id] = array();
+        }
+
+        array_push($this->inputs[$select_id], [
+                'element' => 'option',
+                'id'            => $arguments['id'],
+                'name'          => $arguments['name'],
+                'placeholder'   => $arguments['placeholder'],
+                'value'         => $arguments['value']
+        ]);
+    }
+
+    public function label(array $arguments): void
+    {
+        $this->add_element($arguments, 'label');
+    }
+
+    public function submit(mixed $arguments = false): void
+    {
+        if(!$arguments){
+            $arguments = [
+                    'id' => $this->id . '-submit'
+            ];
+        }
+
+        $this->add_element($arguments, 'input', 'submit');
     }
 
     public function render(): void
     {
         ?>
-        <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST">
+        <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" id="<?php echo $this->id ?>" method="POST">
             <input type="hidden" name="action" value="<?php echo $this->action; ?>">
             <input type="hidden" name="nonce" value="<?php echo $this->nonce; ?>">
             <?php
@@ -83,10 +113,29 @@ class WPPL_Form{
         $pushable = [
             'element'       => $element,
             'id'            => $arguments['id'],
-            'name'          => $arguments['name'],
-            'placeholder'   => $arguments['placeholder'],
-            'value'         => $arguments['value']
         ];
+
+        if(isset($arguments['placeholder'])){
+            $pushable['placeholder'] = $arguments['placeholder'];
+        }
+
+        if(isset($arguments['value'])){
+            $pushable['value'] = $arguments['value'];
+        }
+
+        if(isset($arguments['name'])){
+            $pushable['name'] = $arguments['name'];
+        }
+
+        if($element == 'label'){
+            if(isset($arguments['for'])){
+                $pushable['for'] = $arguments['for'];
+            }
+
+            if(isset($arguments['label'])){
+                $pushable['label'] = $arguments['label'];
+            }
+        }
 
         if($type){
             $pushable['type'] = $type;
@@ -98,10 +147,6 @@ class WPPL_Form{
     private function validation(array $arguments): bool
     {
         if(!isset($arguments['id'])){
-            return false;
-        }
-
-        if(!isset($arguments['name'])){
             return false;
         }
 
@@ -150,7 +195,7 @@ class WPPL_Form{
 
     private function render_input(array $input): void
     {
-        echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] .'" name="' . $input['name'] . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? $input['value'] : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
+        echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . ((isset($input['name'])) ? $input['name'] : '') . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? $input['value'] : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
     }
 
     /**

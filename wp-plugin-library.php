@@ -29,6 +29,16 @@ use WPPL\Lib\WPPL_View;
          $this->check_php_version();
          $this->check_wp_version();
          require WPPL_PATH . '/app/lib/wppl-loader.php';
+
+         add_action('admin_menu', array($this, 'menu'));
+     }
+
+     public function menu(){
+         add_menu_page('test', 'test', 'manage_options', 'test', array($this, 'callback'));
+     }
+
+     public function callback(){
+         return new WPPL_View('test');
      }
 
      /**
