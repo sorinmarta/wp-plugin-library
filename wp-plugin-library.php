@@ -6,13 +6,13 @@ use WPPL\Lib\WPPL_View;
 
 /**
  * Plugin Name:       WordPress Plugin Library
- * Plugin URI:        https://huskystudios.digital/wp-plugin-library
+ * Plugin URI:        https://wplibrary.thehusky.dev
  * Description:       A library that helps me and other developers to create other plugins easily
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
- * Author:            Sorin Marta @ HuskyStudios
- * Author URI:        https://sorinmarta.com
+ * Author:            Sorin Marta @ TheHuskyDev
+ * Author URI:        https://thehusky.dev
  */
 
  const WPPL_SLUG = 'wp-plugin-library' ;
@@ -29,16 +29,6 @@ use WPPL\Lib\WPPL_View;
          $this->check_php_version();
          $this->check_wp_version();
          require WPPL_PATH . '/app/lib/wppl-loader.php';
-
-         add_action('admin_menu', array($this, 'menu'));
-     }
-
-     public function menu(){
-         add_menu_page('test', 'test', 'manage_options', 'test', array($this, 'callback'));
-     }
-
-     public function callback(){
-         return new WPPL_View('test');
      }
 
      /**
