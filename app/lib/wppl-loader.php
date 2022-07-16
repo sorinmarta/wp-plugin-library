@@ -1,28 +1,102 @@
 <?php
 
+namespace WPPL\Lib;
+
+use const WPPL\WPPL_CONTROLLER;
+use const WPPL\WPPL_HELPER;
+use const WPPL\WPPL_LIB;
+use const WPPL\WPPL_MODEL;
+
 class WPPL_Loader{
-    public function __construct(){
+    public function __construct()
+    {
         $this->help();
         $this->lib();
         $this->models();
         $this->controllers();
     }
 
-    private function lib(){
-        require 'wppl-view.php';
-        require 'wppl-form.php';
+    /**
+     * Requires all the library files
+     *
+     * @return $this
+     */
+    private function lib()
+    {
+        foreach($this->get_files(WPPL_LIB) as $file) {
+            require_once WPPL_LIB . "/$file";
+        }
+
+        return $this;
     }
 
-    private function help(){
-        require WPPL_PATH . '/app/helpers/wppl-helper.php';
+    /**
+     * Requires all the helpers
+     *
+     * @return $this
+     */
+    private function help()
+    {
+        foreach($this->get_files(WPPL_HELPER) as $file) {
+            require_once WPPL_HELPER . "/$file";
+        }
+
+        return $this;
     }
 
-    private function models(){
-        // Add your models
+    /**
+     * Requires all the models
+     *
+     * @return $this
+     */
+    private function models()
+    {
+        foreach($this->get_files(WPPL_MODEL) as $file) {
+            require_once WPPL_MODEL . "/$file";
+        }
+
+        return $this;
     }
 
-    private function controllers(){
-        // Add your controllers
+    /**
+     * Requires all the controllers
+     *
+     * @return $this
+     */
+    private function controllers()
+    {
+        foreach($this->get_files(WPPL_CONTROLLER) as $file) {
+            require_once WPPL_CONTROLLER . "/$file";
+        }
+
+        return $this;
+    }
+
+    /**
+     * Loops through a directory and returns an array of PHP files
+     *
+     * @param $dir
+     *
+     * @return array
+     */
+    private function get_files($dir): array
+    {
+        $dir_object = new \DirectoryIterator($dir);
+        $returnable = [];
+
+        foreach($dir_object as $file){
+            if($file->isDot() || $file->isDir()){
+                continue;
+            }
+
+            if($file->getExtension() != 'php'){
+                continue;
+            }
+
+            $returnable[] = $file->getFilename();
+        }
+
+        return $returnable;
     }
 }
 

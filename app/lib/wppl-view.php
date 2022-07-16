@@ -1,11 +1,22 @@
 <?php
 
-class WPPL_View{
-    public function __construct($view){
-        $this->add_styling();
-        $this->add_notifications();
+namespace WPPL\Lib;
 
-        require WPPL_PATH . "/app/views/$view.php";
+use const WPPL\WPPL_PATH;
+
+class WPPL_View{
+    private string $view;
+    private mixed $with;
+
+    public function __construct(string $view, mixed $with = false)
+    {
+        $this->view = $view;
+
+        if($with){
+            $this->with = $with;
+        }
+
+        $this->render();
     }
 
     /**
@@ -14,7 +25,8 @@ class WPPL_View{
      * @return void
      */
 
-    private function add_styling(){
+    private function add_styling(): void
+    {
         ?>
             <style>
                 .wppl-message-container .wppl-notice{
@@ -66,7 +78,8 @@ class WPPL_View{
      * @return void
      */
 
-    private function add_notifications(){
+    private function add_notifications(): void
+    {
         if(isset($_COOKIE['wppl_redirect_type']) && isset($_COOKIE['wppl_redirect_message'])){
             $type = $this->generate_message_class($_COOKIE['wppl_redirect_type']);
             $message = $_COOKIE['wppl_redirect_message'];
@@ -83,7 +96,8 @@ class WPPL_View{
      * @return void
      */
 
-    private function show_redirect_message(string $type, string $message){
+    private function show_redirect_message(string $type, string $message): void
+    {
         ?>
         <div class="wppl-message-container">
             <div class="wppl-notice <?php echo $type; ?>">
@@ -105,17 +119,35 @@ class WPPL_View{
      * @return void
      */
     
-    private function generate_message_class(string $type){
+    private function generate_message_class(string $type): string
+    {
         switch ($type){
             case 'success':
                 return 'wppl-success';
-                break;
             case 'alert':
                 return 'wppl-alert';
-                break;
             case 'error':
                 return 'wppl-error';
-                break;
         }
+     }
+
+    /**
+     * Renders the page with the values passed
+     *
+     * @return mixed
+     */
+
+     private function render(): mixed
+     {
+         $this->add_styling();
+         $this->add_notifications();
+
+         if(!empty($this->with)){
+             foreach($this->with as $key => $value){
+                 ${$key} = $value;
+             }
+         }
+
+         return require WPPL_PATH . '/app/views/' . $this->view . '.php';
      }
 }
