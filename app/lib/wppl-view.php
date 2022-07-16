@@ -5,8 +5,8 @@ namespace WPPL\Lib;
 use const WPPL\WPPL_PATH;
 
 class WPPL_View{
-    private $view;
-    private $with;
+    private string $view;
+    private mixed $with;
 
     public function __construct(string $view, mixed $with = false)
     {
@@ -119,18 +119,15 @@ class WPPL_View{
      * @return void
      */
     
-    private function generate_message_class(string $type)
+    private function generate_message_class(string $type): string
     {
         switch ($type){
             case 'success':
                 return 'wppl-success';
-                break;
             case 'alert':
                 return 'wppl-alert';
-                break;
             case 'error':
                 return 'wppl-error';
-                break;
         }
      }
 

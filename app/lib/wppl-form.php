@@ -9,13 +9,12 @@ class WPPL_Form{
     private string $id;
 
     /**
-     * The constructor that generates the form
+     * The constructor function of the form class
      *
-     * @param string $action - The action element of the form
-     * @param string $nonce - The nonce hidden input
-     * @param array $inputs - The array of inputs
+     * @param string $action
+     * @param mixed  $nonce
+     * @param mixed  $id
      */
-
     public function __construct(string $action, mixed $nonce = false, mixed $id = false)
     {
         $this->action = $action;
@@ -31,31 +30,74 @@ class WPPL_Form{
         }
     }
 
+    /**
+     * Adds a single text input to the form object
+     *
+     * @param array $arguments
+     *
+     * @return void
+     */
     public function single_text(array $arguments): void
     {
         $this->add_element($arguments, 'input', 'text');
     }
 
+    /**
+     * Adds an email input to the form object
+     *
+     * @param array $arguments
+     *
+     * @return void
+     */
     public function email(array $arguments): void
     {
         $this->add_element($arguments, 'input', 'email');
     }
 
+    /**
+     * Adds a number input to the form object
+     *
+     * @param array $arguments
+     *
+     * @return void
+     */
     public function number(array $arguments): void
     {
         $this->add_element($arguments, 'input', 'number');
     }
 
+    /**
+     * Adds a textarea to the form object
+     *
+     * @param array $arguments
+     *
+     * @return void
+     */
     public function textarea(array $arguments): void
     {
         $this->add_element($arguments, 'textarea');
     }
 
+    /**
+     * Adds a select to the form object
+     *
+     * @param array $arguments
+     *
+     * @return void
+     */
     public function select(array $arguments): void
     {
         $this->add_element($arguments, 'select');
     }
 
+    /**
+     * Adds an option to a select element
+     *
+     * @param array  $arguments
+     * @param string $select_id
+     *
+     * @return void
+     */
     public function option(array $arguments, string $select_id): void
     {
         if(!isset($this->inputs[$select_id])){
@@ -75,11 +117,25 @@ class WPPL_Form{
         ]);
     }
 
+    /**
+     * Adds a label to the form object
+     *
+     * @param array $arguments
+     *
+     * @return void
+     */
     public function label(array $arguments): void
     {
         $this->add_element($arguments, 'label');
     }
 
+    /**
+     * Adds a submit button to the form object
+     *
+     * @param mixed $arguments
+     *
+     * @return void
+     */
     public function submit(mixed $arguments = false): void
     {
         if(!$arguments){
@@ -91,6 +147,11 @@ class WPPL_Form{
         $this->add_element($arguments, 'input', 'submit');
     }
 
+    /**
+     * Renders the form object as HTML
+     *
+     * @return void
+     */
     public function render(): void
     {
         ?>
@@ -104,6 +165,15 @@ class WPPL_Form{
         <?php
     }
 
+    /**
+     * Adds an element to the inputs array of the form object
+     *
+     * @param array  $arguments
+     * @param string $element
+     * @param mixed  $type
+     *
+     * @return void
+     */
     private function add_element(array $arguments, string $element, mixed $type = false): void
     {
         if(!$this->validation($arguments)){
@@ -144,6 +214,13 @@ class WPPL_Form{
         array_push($this->inputs, $pushable);
     }
 
+    /**
+     * Validates if the form object has an ID
+     *
+     * @param array $arguments
+     *
+     * @return bool
+     */
     private function validation(array $arguments): bool
     {
         if(!isset($arguments['id'])){
@@ -156,11 +233,8 @@ class WPPL_Form{
     /**
      * The method that loops the inputs
      *
-     * @param array $inputs - An array of inputs can either be with the Element of 'input' or 'drowpdown'
-     *
      * @return void
      */
-
     private function loop_inputs(): void
     {
         foreach($this->inputs as $input){
@@ -180,29 +254,19 @@ class WPPL_Form{
     }
 
     /**
-     * REQUIRED
-     * - Type
-     * - ID
-     * - Name
-     *
-     * OPTIONAL
-     * - Placeholder
-     * - Value
+     * Renders an element from the elements array
      *
      * @param array $input
+     *
      * @return void
      */
-
     private function render_input(array $input): void
     {
         echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . ((isset($input['name'])) ? $input['name'] : '') . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? $input['value'] : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
     }
 
     /**
-     * REQUIRED
-     * - Name
-     * - ID
-     * - Options - ARRAY OF AN ARRAYS FOR EVERY OPTION
+     *
      *
      * @param array $input
      * @return void
@@ -216,10 +280,7 @@ class WPPL_Form{
     }
 
     /**
-     * REQUIRED
-     * - Value
-     * - ID
-     * - Text
+     * Loop through the options of a select item
      *
      * @param array $options
      * @return void
@@ -235,9 +296,6 @@ class WPPL_Form{
     /**
      * Render the label
      *
-     * REQUIRED
-     * - Input
-     *
      * @param array $input
      * @return void
      */
@@ -252,13 +310,9 @@ class WPPL_Form{
     /**
      * A helper that will check if the provided nonce is correct
      *
-     * REQUIRED
-     * - Nonce
-     * - Tag
-     * 
      * @param string $nonce
      * @param string $tag
-     * @return void
+     * @return bool
      */
 
     static function check_nonce(string $nonce, string $tag): bool
