@@ -2,6 +2,7 @@
   "name": "sorinmarta/wp-plugin-library",
   "description": "A lightweight library for developing WordPress plugins without having to do repetitive tasks",
   "license": "MIT",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "sorinmarta",
