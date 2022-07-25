@@ -1,0 +1,14 @@
+{
+  "name": "sorinmarta/wp-plugin-library",
+  "description": "A lightweight library for developing WordPress plugins without having to do repetitive tasks",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "sorinmarta",
+      "email": "sorinmarta0@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1"
+  }
+}
