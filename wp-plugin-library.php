@@ -10,7 +10,7 @@ use WPPL\Lib\WPPL_View;
  * Description:       A library that helps me and other developers to create other plugins easily
  * Version:           1.0.0
  * Requires at least: 5.2
- * Requires PHP:      7.2
+ * Requires PHP:      8.0
  * Author:            Sorin Marta @ TheHuskyDev
  * Author URI:        https://thehusky.dev
  */
@@ -52,8 +52,8 @@ use WPPL\Lib\WPPL_View;
      {
          global $wp_version;
 
-         if($wp_version < 4.5){
-            wp_die(__('WordPress version cannot be lower than 4.5', WPPL_SLUG));
+         if($wp_version < 5.2){
+            wp_die(__('WordPress version cannot be lower than 5.2', WPPL_SLUG));
          }
      }
  }
