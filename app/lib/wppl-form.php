@@ -264,7 +264,7 @@ class WPPL_Form{
      */
     private function render_input(array $input): void
     {
-        echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . ((isset($input['name'])) ? $input['name'] : '') . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? 'value="' . $input['value'] . '"' : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
+        echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . '"' . ((isset($input['name'])) ? 'name="' . $input['name'] : '') . '"' . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? 'value="' . $input['value'] . '"' : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
     }
 
     /**
