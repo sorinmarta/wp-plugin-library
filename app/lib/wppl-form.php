@@ -27,6 +27,8 @@ class WPPL_Form{
 
         if(!$id){
             $this->id = uniqid('form-');
+        }else{
+	        $this->id = $id;
         }
     }
 
