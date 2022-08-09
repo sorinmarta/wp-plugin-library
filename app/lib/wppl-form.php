@@ -7,6 +7,7 @@ class WPPL_Form{
     private string $nonce;
     private array $inputs = [];
     private string $id;
+    private string $element_value;
 
     /**
      * The constructor function of the form class
@@ -199,6 +200,10 @@ class WPPL_Form{
             $pushable['name'] = $arguments['name'];
         }
 
+        if(isset($arguments['default'])){
+            $pushable['default'] = $arguments['default'];
+        }
+
         if($element == 'label'){
             if(isset($arguments['for'])){
                 $pushable['for'] = $arguments['for'];
@@ -264,7 +269,7 @@ class WPPL_Form{
      */
     private function render_input(array $input): void
     {
-        echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . '"' . ((isset($input['name'])) ? 'name="' . $input['name'] : '') . '"' . '" ' . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value'])) ? 'value="' . $input['value'] . '"' : '') . 'class="wppl-input ' . ((isset($input['class']) ? $input['class'] : '')) . (($input['type'] == 'submit' ? ' wppl-submit' : '')) .'">';
+        echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . '"' . ((isset($input['name'])) ? 'name="' . $input['name'] . '"' : '') . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value']) || isset($input['default'])) ?'value="' . $this->set_element_value($input) . '"' : '') . 'class="wppl-input ' . (( $input['class'] ?? '' )) . (( $input['type'] == 'submit' ? ' wppl-submit' : '')) . '">';
     }
 
     /**
@@ -307,6 +312,21 @@ class WPPL_Form{
         echo '<label id="'. $input['id'] . '" class="wppl-input wppl-label ' . ((isset($input['class']) ? $input['class'] : '')) . '" for="' . $input['for'] . '">';
         echo $input['label'];
         echo '</label>';
+    }
+
+    private function set_element_value(array $arguments): string
+    {
+        if(isset($arguments['default'])){
+            if($arguments['default']){
+                return $arguments['default'];
+            }
+        }
+
+        if(isset($arguments['value'])){
+            return $arguments['value'];
+        }
+
+        return '';
     }
 
     /**
