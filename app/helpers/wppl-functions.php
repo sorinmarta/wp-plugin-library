@@ -7,9 +7,11 @@
  *
  * @return bool
  */
-function wppl_dd($body): bool
-{
-    return \WPPL\Helpers\WPPL_Helper::dd($body);
+if(!function_exists('wppl_dd')){
+	function wppl_dd($body): bool
+	{
+		return \WPPL\Helpers\WPPL_Helper::dd($body);
+	}	
 }
 
 /**
@@ -21,9 +23,11 @@ function wppl_dd($body): bool
  *
  * @return bool
  */
-function wppl_redirect($url, $type = null, $message = null): bool
-{
-    return \WPPL\Helpers\WPPL_Helper::redirect($url, $type, $message);
+if(!function_exists('wppl_redirect')){
+	function wppl_redirect($url, $type = null, $message = null): bool
+	{
+		return \WPPL\Helpers\WPPL_Helper::redirect($url, $type, $message);
+	}
 }
 
 /**
@@ -34,9 +38,10 @@ function wppl_redirect($url, $type = null, $message = null): bool
  *
  * @return bool
  */
-function add_or_update_option($tag, $value): bool
-{
-    return \WPPL\Helpers\WPPL_Helper::add_or_update_option($tag, $value);
+if(!function_exists('add_or_update_option')) {
+	function add_or_update_option( $tag, $value ): bool {
+		return \WPPL\Helpers\WPPL_Helper::add_or_update_option( $tag, $value );
+	}
 }
 
 /**
@@ -48,7 +53,8 @@ function add_or_update_option($tag, $value): bool
  *
  * @return bool
  */
-function add_or_update_user_meta($user_id, $tag, $value): bool
-{
-    return \WPPL\Helpers\WPPL_Helper::add_or_update_user_meta($user_id, $tag, $value);
+if(!function_exists('add_or_update_user_meta')) {
+	function add_or_update_user_meta( $user_id, $tag, $value ): bool {
+		return \WPPL\Helpers\WPPL_Helper::add_or_update_user_meta( $user_id, $tag, $value );
+	}
 }

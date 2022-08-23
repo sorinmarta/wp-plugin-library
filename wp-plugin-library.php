@@ -23,39 +23,38 @@ use WPPL\Lib\WPPL_View;
  const WPPL_CONTROLLER = WPPL_APP . '/controllers';
  const WPPL_MODEL =  WPPL_APP . '/models';
 
- class WP_Plugin_Helper{
-     public function __construct()
-     {
-         $this->check_php_version();
-         $this->check_wp_version();
-         require WPPL_PATH . '/app/lib/wppl-loader.php';
-     }
+ if(!class_exists('WP_Plugin_Helper')) {
+	 class WP_Plugin_Helper {
+		 public function __construct() {
+			 $this->check_php_version();
+			 $this->check_wp_version();
+			 require WPPL_PATH . '/app/lib/wppl-loader.php';
+		 }
 
-     /**
-      * Checks if the PHP version is compatible
-      *
-      * @return void
-      */
-     private function check_php_version(): void
-     {
-        if(phpversion() < 8.0){
-            wp_die(__('PHP version cannot be lower than 8.0', WPPL_SLUG));
-        }
-     }
+		 /**
+		  * Checks if the PHP version is compatible
+		  *
+		  * @return void
+		  */
+		 private function check_php_version(): void {
+			 if ( phpversion() < 8.0 ) {
+				 wp_die( __( 'PHP version cannot be lower than 8.0', WPPL_SLUG ) );
+			 }
+		 }
 
-     /**
-      * Checks if the WP version is compatible
-      *
-      * @return void
-      */
-     private function check_wp_version(): void
-     {
-         global $wp_version;
+		 /**
+		  * Checks if the WP version is compatible
+		  *
+		  * @return void
+		  */
+		 private function check_wp_version(): void {
+			 global $wp_version;
 
-         if($wp_version < 5.2){
-            wp_die(__('WordPress version cannot be lower than 5.2', WPPL_SLUG));
-         }
-     }
+			 if ( $wp_version < 5.2 ) {
+				 wp_die( __( 'WordPress version cannot be lower than 5.2', WPPL_SLUG ) );
+			 }
+		 }
+	 }
+
+	 new WP_Plugin_Helper();
  }
-
- new WP_Plugin_Helper();
