@@ -15,6 +15,8 @@ use WPPL\Lib\WPPL_View;
  * Author URI:        https://thehusky.dev
  */
 
+define('WPPL_URL', plugin_dir_url(__FILE__));
+
  const WPPL_SLUG = 'wp-plugin-library' ;
  const WPPL_PATH = WP_PLUGIN_DIR . '/' . WPPL_SLUG;
  const WPPL_APP = WPPL_PATH . '/app';
@@ -22,6 +24,9 @@ use WPPL\Lib\WPPL_View;
  const WPPL_HELPER = WPPL_APP . '/helpers';
  const WPPL_CONTROLLER = WPPL_APP . '/controllers';
  const WPPL_MODEL =  WPPL_APP . '/models';
+ const WPPL_ASSET = WPPL_URL . '/assets';
+ const WPPL_CSS = WPPL_ASSET . '/css';
+ const WPPL_JS = WPPL_ASSET . '/js';
 
  if(!class_exists('WP_Plugin_Helper')) {
 	 class WP_Plugin_Helper {
