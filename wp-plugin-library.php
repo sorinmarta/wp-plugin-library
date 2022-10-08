@@ -27,6 +27,8 @@ define('WPPL_URL', plugin_dir_url(__FILE__));
  const WPPL_ASSET = WPPL_URL . '/assets';
  const WPPL_CSS = WPPL_ASSET . '/css';
  const WPPL_JS = WPPL_ASSET . '/js';
+ const WPPL_DB_PREFIX = 'wppl';
+ const WPPL_TIME_FORMAT = 'Y-m-d H:i:s';
 
  if(!class_exists('WP_Plugin_Helper')) {
 	 class WP_Plugin_Helper {
@@ -34,6 +36,9 @@ define('WPPL_URL', plugin_dir_url(__FILE__));
 			 $this->check_php_version();
 			 $this->check_wp_version();
 			 require WPPL_PATH . '/app/lib/wppl-loader.php';
+
+			 add_action('activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', 'WPPL_Activation_Controller::init()');
+			 add_action('deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', 'WPPL_Deactivation_Controller::init()');
 		 }
 
 		 /**
