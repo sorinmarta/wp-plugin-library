@@ -37,8 +37,8 @@ use WPPL\Lib\WPPL_View;
 		  * @return void
 		  */
 		 private function check_php_version(): void {
-			 if ( phpversion() < 8.0 ) {
-				 wp_die( __( 'PHP version cannot be lower than 8.0', WPPL_SLUG ) );
+			 if ( phpversion() < 7.4 ) {
+				 wp_die( __( 'PHP version cannot be lower than 7.4', WPPL_SLUG ) );
 			 }
 		 }
 

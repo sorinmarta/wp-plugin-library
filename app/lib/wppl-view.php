@@ -7,9 +7,9 @@ use const WPPL\WPPL_PATH;
 if(!class_exists('WPPL_View')){
     class WPPL_View{
         private string $view;
-        private mixed $with;
+        private $with;
 
-        public function __construct(string $view, mixed $with = false)
+        public function __construct(string $view, $with = false)
         {
             $this->view = $view;
 
@@ -138,7 +138,7 @@ if(!class_exists('WPPL_View')){
          * @return mixed
          */
 
-         private function render(): mixed
+         private function render()
          {
              $this->add_styling();
              $this->add_notifications();

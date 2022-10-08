@@ -17,7 +17,7 @@ if(!class_exists('WPPL_Form')){
          * @param mixed  $nonce
          * @param mixed  $id
          */
-        public function __construct(string $action, mixed $nonce = false, mixed $id = false)
+        public function __construct(string $action, $nonce = false, $id = false)
         {
             $this->action = $action;
 
@@ -140,7 +140,7 @@ if(!class_exists('WPPL_Form')){
          *
          * @return void
          */
-        public function submit(mixed $arguments = false): void
+        public function submit($arguments = false): void
         {
             if(!$arguments){
                 $arguments = [
@@ -178,7 +178,7 @@ if(!class_exists('WPPL_Form')){
          *
          * @return void
          */
-        private function add_element(array $arguments, string $element, mixed $type = false): void
+        private function add_element(array $arguments, string $element, $type = false): void
         {
             if(!$this->validation($arguments)){
                 wppl_dd('The required fields were not added to the form');
