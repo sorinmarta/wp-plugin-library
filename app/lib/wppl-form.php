@@ -46,9 +46,28 @@ if(!class_exists('WPPL_Form')){
 			$this->add_element($arguments, 'input', 'text');
 		}
 
+		/**
+		 * Adds a heading to the form object
+		 *
+		 * @param array $arguments
+		 *
+		 * @return void
+		 */
 		public function heading(array $arguments, string $element): void
 		{
 			$this->add_element($arguments, $element);
+		}
+
+		/**
+		 * Adds a paragraph to the form object
+		 *
+		 * @param array $arguments
+		 *
+		 * @return void
+		 */
+		public function paragraph(array $arguments): void
+		{
+			$this->add_element($arguments, 'p');
 		}
 
 		/**
@@ -319,8 +338,8 @@ if(!class_exists('WPPL_Form')){
 					$this->render_editor($input);
 				}
 
-				if (in_array($input['element'], ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])){
-					$this->render_heading($input);
+				if (in_array($input['element'], ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'])){
+					$this->render_text($input);
 				}
 			}
 
@@ -402,9 +421,9 @@ if(!class_exists('WPPL_Form')){
 		}
 
         /*
-         * Render the headings
+         * Render the headings and paragraphs
          */
-		private function render_heading(array $input): void
+		private function render_text(array $input): void
 		{
 			if(isset($input['group']) && $input['group'] == 'start'){
 				echo "<div class='wppl-form-group'>";
