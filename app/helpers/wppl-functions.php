@@ -38,8 +38,8 @@ if(!function_exists('wppl_redirect')){
  *
  * @return bool
  */
-if(!function_exists('add_or_update_option')) {
-	function add_or_update_option( $tag, $value ): bool {
+if(!function_exists('wppl_add_or_update_option')) {
+	function wppl_add_or_update_option( $tag, $value ): bool {
 		return \WPPL\Helpers\WPPL_Helper::add_or_update_option( $tag, $value );
 	}
 }
@@ -53,8 +53,8 @@ if(!function_exists('add_or_update_option')) {
  *
  * @return bool
  */
-if(!function_exists('add_or_update_user_meta')) {
-	function add_or_update_user_meta( $user_id, $tag, $value ): bool {
+if(!function_exists('wppl_add_or_update_user_meta')) {
+	function wppl_add_or_update_user_meta( $user_id, $tag, $value ): bool {
 		return \WPPL\Helpers\WPPL_Helper::add_or_update_user_meta( $user_id, $tag, $value );
 	}
 }
