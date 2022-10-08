@@ -272,6 +272,14 @@ if(!class_exists('WPPL_Form')){
 				}
 			}
 
+			$pushable['required'] = false;
+
+			if(isset($arguments['required'])){
+				if($arguments['required'] == 'true'){
+					$pushable['required'] = true;
+				}
+			}
+
 			if($element == 'label'){
 				if(isset($arguments['for'])){
 					$pushable['for'] = $arguments['for'];
@@ -358,7 +366,7 @@ if(!class_exists('WPPL_Form')){
 				echo "<div class='wppl-form-group'>";
 			}
 
-			echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . '"' . ((isset($input['name'])) ? 'name="' . $input['name'] . '"' : '') . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value']) || isset($input['default'])) ?'value="' . $this->set_element_value($input) . '"' : '') . 'class="wppl-input ' . (( $input['class'] ?? '' )) . (( $input['type'] == 'submit' ? ' wppl-submit' : '')) . '"' . (($input['checked']) ? 'checked' : '') .'>';
+			echo '<'. $input['element'] .' type="' . $input['type'] . '" id="'. $input['id'] . '"' . ((isset($input['name'])) ? 'name="' . $input['name'] . '"' : '') . ((isset($input['placeholder'])) ? $input['placeholder'] : '') . ((isset($input['value']) || isset($input['default'])) ?'value="' . $this->set_element_value($input) . '"' : '') . 'class="wppl-input ' . (( $input['class'] ?? '' )) . (( $input['type'] == 'submit' ? ' wppl-submit' : '')) . '"' . (($input['checked']) ? 'checked ' : ' ') . (($input['required']) ? 'required' : '') .'>';
 
 			if(isset($input['group']) &&$input['group'] == 'end'){
 				echo '</div>';
