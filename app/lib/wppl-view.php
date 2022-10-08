@@ -21,59 +21,6 @@ if(!class_exists('WPPL_View')){
         }
 
         /**
-         * Adds the required CSS for the views
-         *
-         * @return void
-         */
-
-        private function add_styling(): void
-        {
-            ?>
-                <style>
-                    .wppl-message-container .wppl-notice{
-                        position: relative;
-                        padding: .75rem 1.25rem;
-                        margin-bottom: 1rem;
-                        border: 1px solid transparent;
-                        border-radius: .25rem;
-                        margin-right:1.25rem;
-                        margin-top:1rem;
-                    }
-
-                    .wppl-message-container .wppl-alert{
-                        background-color: #fff3cd;
-                        color: #856404;
-                        border-color: #ffeeba;
-                    }
-
-                    .wppl-message-container .wppl-success{
-                        background-color:#d4edda;
-                        color: #155724;
-                        border-color:#c3e6cb;
-                    }
-
-                    .wppl-message-container .wppl-error{
-                        background-color: #f8d7da;
-                        color: #721c24;
-                        border-color: #f5c6cb;
-                    }
-
-                    .wppl-input{
-                        display:block;
-                    }
-
-                    .wppl-label{
-                        display:block;
-                    }
-
-                    .wppl-submit{
-                        margin-top:15px;
-                    }
-                </style>
-            <?php
-        }
-
-        /**
          * Add the notifications partial
          *
          * @return void
@@ -140,7 +87,6 @@ if(!class_exists('WPPL_View')){
 
          private function render()
          {
-             $this->add_styling();
              $this->add_notifications();
 
              if(!empty($this->with)){
