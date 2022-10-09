@@ -9,9 +9,8 @@ if(!class_exists('WPPL_Enqueuing_Controller')){
 		public function admin(){
 			wp_enqueue_style('wppl-main-stylesheet', \WPPL\WPPL_CSS . 'admin/main.css', null, false);
 		}
-		// string $handle, string $src = '', string[] $deps = array(), string|bool|null $ver = false, string $media = 'all'
 		private function style(array $options){
-			$this->options_validate($options);
+			$options = $this->options_validate($options);
 
 			if(isset($options['slugs'])){
 				return $this->filtered_enqueue($options, $options['slugs'], 'style');
@@ -20,7 +19,18 @@ if(!class_exists('WPPL_Enqueuing_Controller')){
 			wp_enqueue_style($options['handle'], $options['src'], $options['deps'], $options['ver'], $options['media']);
 		}
 
-		private function options_validate(array $options){
+		private function script(array $options){
+			$options = $this->options_validate($options);
+
+			if(isset($options['slugs'])){
+				return $this->filtered_enqueue($options, $options['slugs'], 'script');
+			}
+
+			wp_enqueue_script($options['handle'], $options['src'], $options['deps'], $options['ver'], $options['in_footer']);
+		}
+
+		private function options_validate(array $options): array
+		{
 			if(!isset($options['handle']) || !is_string($options['handle'])){
 				wp_die('Handle parameter needs to be added and must be a string');
 			}
@@ -33,19 +43,48 @@ if(!class_exists('WPPL_Enqueuing_Controller')){
 				if(!is_array($options['deps'])){
 					wp_die('Deps must be an array');
 				}
+			}else{
+				$options['deps'] = null;
 			}
 
 			if(isset($options['media'])){
 				if(!is_string('media')){
 					wp_die('Media must be a string');
 				}
+			}else{
+				$options['media'] = 'all';
 			}
+
+			if(isset($options['in_footer'])){
+				if(!is_bool($options['in_footer'])){
+					wp_die('in_footer must be a boolean');
+				}
+			}else{
+				$options['in_footer'] = false;
+			}
+
+			return $options;
 		}
 
-		private function filtered_enqueue(array $options, array $slugs, string $type){
-			// Filter and enqueue
+		private function filtered_enqueue(array $options, array $slugs, string $type): bool
+		{
+			global $post;
 
-			return true;
+			if(in_array($post->post_name, $slugs)){
+				if($type === 'style'){
+					wp_enqueue_style($options['handle'], $options['src'], $options['deps'], $options['ver'], $options['media']);
+
+					return true;
+				}
+
+				if($type === 'script'){
+					wp_enqueue_script($options['handle'], $options['src'], $options['deps'], $options['ver'], $options['in_footer']);
+
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 
