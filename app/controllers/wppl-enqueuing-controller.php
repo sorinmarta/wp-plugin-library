@@ -1,5 +1,7 @@
 <?php
 
+namespace WPPL\App\Controller;
+
 if(!class_exists('WPPL_Enqueuing_Controller')){
 	class WPPL_Enqueuing_Controller{
 		public function __construct(){

@@ -2,7 +2,10 @@
 
 namespace WPPL;
 
+use WPPL\App\Controller\WPPL_Deactivation_Controller;
+use WPPL\Lib\WPPL_Form;
 use WPPL\Lib\WPPL_View;
+use WPPL\App\Controller\WPPL_Activation_Controller;
 
 /**
  * Plugin Name:       WordPress Plugin Library
@@ -37,8 +40,18 @@ define('WPPL_URL', plugin_dir_url(__FILE__));
 			 $this->check_wp_version();
 			 require WPPL_PATH . '/app/lib/wppl-loader.php';
 
-			 add_action('activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', 'WPPL_Activation_Controller::init()');
-			 add_action('deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', 'WPPL_Deactivation_Controller::init()');
+			 add_action('activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array($this, 'activate'));
+			 add_action('deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array($this, 'deactivate'));
+
+			 add_action('admin_menu', array($this, 'test_page'));
+		 }
+
+		 public function test_page(){
+			 add_management_page('Test Page', 'Test Page', 'manage_options', 'test-page', array($this, 'test_callback'));
+		 }
+
+		 public function test_callback(){
+			 new WPPL_View('test');
 		 }
 
 		 /**
@@ -50,6 +63,24 @@ define('WPPL_URL', plugin_dir_url(__FILE__));
 			 if ( phpversion() < 7.4 ) {
 				 wp_die( __( 'PHP version cannot be lower than 7.4', WPPL_SLUG ) );
 			 }
+		 }
+
+		 /**
+		  * Executes when the plugin gets activated
+		  *
+		  * @return void
+		  */
+		 public function activate(){
+			 new WPPL_Activation_Controller();
+		 }
+
+		 /**
+		  * Executes when the plugin gets deactivated
+		  *
+		  * @return void
+		  */
+		 public function deactivate(){
+			 new WPPL_Deactivation_Controller();
 		 }
 
 		 /**

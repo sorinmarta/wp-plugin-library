@@ -284,10 +284,6 @@ if(!class_exists('WPPL_Form')){
 				if(isset($arguments['for'])){
 					$pushable['for'] = $arguments['for'];
 				}
-
-				if(isset($arguments['label'])){
-					$pushable['label'] = $arguments['label'];
-				}
 			}
 
 			if(isset($arguments['content'])){
@@ -330,7 +326,7 @@ if(!class_exists('WPPL_Form')){
 		private function loop_inputs(): void
 		{
 			foreach($this->inputs as $input){
-				if(isset($input['label'])){
+				if($input['element'] == 'label'){
 					$this->render_label($input);
 				}
 
@@ -420,7 +416,7 @@ if(!class_exists('WPPL_Form')){
 			}
 
 			echo '<label id="'. $input['id'] . '" class="wppl-input wppl-label ' . ((isset($input['class']) ? $input['class'] : '')) . '" for="' . $input['for'] . '">';
-			echo $input['label'];
+			echo $input['content'];
 			echo '</label>';
 
 			if(isset($input['group']) &&$input['group'] == 'end'){
