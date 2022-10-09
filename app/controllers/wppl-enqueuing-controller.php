@@ -4,11 +4,17 @@ if(!class_exists('WPPL_Enqueuing_Controller')){
 	class WPPL_Enqueuing_Controller{
 		public function __construct(){
 			add_action('admin_enqueue_scripts', array($this, 'admin'));
+//			add_action('wp_enqueue_scripts', array($this, 'front'));
+		}
+
+		public function front(){
+			wp_enqueue_style('wppl-public-stylesheet', \WPPL\WPPL_CSS . 'public/main.css', null, false);
 		}
 
 		public function admin(){
-			wp_enqueue_style('wppl-main-stylesheet', \WPPL\WPPL_CSS . 'admin/main.css', null, false);
+			wp_enqueue_style('wppl-admin-stylesheet', \WPPL\WPPL_CSS . 'admin/main.css', null, false);
 		}
+
 		private function style(array $options){
 			$options = $this->options_validate($options);
 
