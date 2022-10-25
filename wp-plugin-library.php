@@ -13,7 +13,7 @@ use WPPL\App\Controller\WPPL_Activation_Controller;
  * Description:       A library that helps me and other developers to create other plugins easily
  * Version:           1.0.0
  * Requires at least: 5.2
- * Requires PHP:      8.0
+ * Requires PHP:      7.4
  * Author:            Sorin Marta @ TheHuskyDev
  * Author URI:        https://thehusky.dev
  */
@@ -40,18 +40,8 @@ define('WPPL_URL', plugin_dir_url(__FILE__));
 			 $this->check_wp_version();
 			 require WPPL_PATH . '/app/lib/wppl-loader.php';
 
-			 add_action('activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array($this, 'activate'));
-			 add_action('deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array($this, 'deactivate'));
-
-			 add_action('admin_menu', array($this, 'test_page'));
-		 }
-
-		 public function test_page(){
-			 add_management_page('Test Page', 'Test Page', 'manage_options', 'test-page', array($this, 'test_callback'));
-		 }
-
-		 public function test_callback(){
-			 new WPPL_View('test');
+//			 add_action('activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array($this, 'activate'));
+//			 add_action('deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array($this, 'deactivate'));
 		 }
 
 		 /**
