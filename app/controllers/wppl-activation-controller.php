@@ -1,7 +1,5 @@
 <?php
 
-namespace WPPL\App\Controller;
-
 if(!class_exists('WPPL_Activation_Controller')){
 	class WPPL_Activation_Controller{
 		public function __construct(){

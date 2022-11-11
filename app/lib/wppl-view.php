@@ -1,9 +1,5 @@
 <?php
 
-namespace WPPL\Lib;
-
-use const WPPL\WPPL_PATH;
-
 if(!class_exists('WPPL_View')){
     class WPPL_View{
         private string $view;

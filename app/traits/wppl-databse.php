@@ -1,8 +1,5 @@
 <?php
 
-
-namespace WPPL\Traits;
-
 if ( ! trait_exists( 'WPPL_Database' ) ) {
 	trait WPPL_Database {
 		// Does the table exist?

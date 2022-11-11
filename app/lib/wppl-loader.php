@@ -1,12 +1,5 @@
 <?php
 
-namespace WPPL\Lib;
-
-use const WPPL\WPPL_CONTROLLER;
-use const WPPL\WPPL_HELPER;
-use const WPPL\WPPL_LIB;
-use const WPPL\WPPL_MODEL;
-
 if(!class_exists('WPPL_Loader')) {
 	class WPPL_Loader {
 		public function __construct() {

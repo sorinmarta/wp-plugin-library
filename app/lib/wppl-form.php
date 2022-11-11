@@ -1,7 +1,5 @@
 <?php
 
-namespace WPPL\Lib;
-
 if(!class_exists('WPPL_Form')){
 	class WPPL_Form{
 		private string $action;
@@ -46,13 +44,14 @@ if(!class_exists('WPPL_Form')){
 			$this->add_element($arguments, 'input', 'text');
 		}
 
-		/**
-		 * Adds a heading to the form object
-		 *
-		 * @param array $arguments
-		 *
-		 * @return void
-		 */
+        /**
+         * Adds a heading to the form object
+         *
+         * @param array  $arguments
+         * @param string $element
+         *
+         * @return void
+         */
 		public function heading(array $arguments, string $element): void
 		{
 			$this->add_element($arguments, $element);
@@ -164,10 +163,22 @@ if(!class_exists('WPPL_Form')){
 		 *
 		 * @return void
 		 */
-		public function checkbox($arguments): void
+		public function checkbox(array $arguments): void
 		{
 			$this->add_element($arguments, 'input', 'checkbox');
 		}
+
+        /**
+         * Adds a radio to the form object
+         *
+         * @param array $arguments
+         *
+         * @return void
+         */
+        public function radio(array $arguments): void
+        {
+            $this->add_element($arguments, 'input', 'radio');
+        }
 
 		/**
 		 * Adds an editor to the form object

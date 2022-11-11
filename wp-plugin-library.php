@@ -1,12 +1,5 @@
 <?php
 
-namespace WPPL;
-
-use WPPL\App\Controller\WPPL_Deactivation_Controller;
-use WPPL\Lib\WPPL_Form;
-use WPPL\Lib\WPPL_View;
-use WPPL\App\Controller\WPPL_Activation_Controller;
-
 /**
  * Plugin Name:       WordPress Plugin Library
  * Plugin URI:        https://wplibrary.thehusky.dev

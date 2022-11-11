@@ -1,7 +1,5 @@
 <?php
 
-namespace WPPL\App\Controller;
-
 if(!class_exists('WPPL_Deactivation_Controller')){
 	class WPPL_Deactivation_Controller{
 		public function __construct(){

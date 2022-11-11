@@ -1,7 +1,5 @@
 <?php
 
-namespace WPPL\Helpers;
-
 if(!class_exists('WPPL_Helper')){
 	class WPPL_Helper{
 
