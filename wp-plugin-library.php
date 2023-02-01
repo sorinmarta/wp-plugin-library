@@ -13,18 +13,53 @@
 
 define('WPPL_URL', plugin_dir_url(__FILE__));
 
- const WPPL_SLUG = 'wp-plugin-library' ;
- const WPPL_PATH = WP_PLUGIN_DIR . '/' . WPPL_SLUG;
- const WPPL_APP = WPPL_PATH . '/app';
- const WPPL_LIB = WPPL_APP . '/lib';
- const WPPL_HELPER = WPPL_APP . '/helpers';
- const WPPL_CONTROLLER = WPPL_APP . '/controllers';
- const WPPL_MODEL =  WPPL_APP . '/models';
- const WPPL_ASSET = WPPL_URL . '/assets';
- const WPPL_CSS = WPPL_ASSET . '/css';
- const WPPL_JS = WPPL_ASSET . '/js';
- const WPPL_DB_PREFIX = 'wppl';
- const WPPL_TIME_FORMAT = 'Y-m-d H:i:s';
+ if(!defined('WPPL_SLUG')){
+     define('WPPL_SLUG', 'wp-plugin-library');
+ }
+
+ if(!defined('WPPL_PATH')){
+     define('WPPL_PATH', WP_PLUGIN_DIR . '/' . WPPL_SLUG);
+ }
+
+ if(!defined('WPPL_APP')){
+     define('WPPL_APP', WPPL_PATH . '/app');
+ }
+
+ if(!defined('WPPL_LIB')){
+     define('WPPL_LIB', WPPL_APP . '/lib');
+ }
+
+ if(!defined('WPPL_HELPER')){
+     define('WPPL_HELPER', WPPL_APP . '/helpers');
+ }
+
+ if(!defined('WPPL_CONTROLLER')){
+     define('WPPL_CONTROLLER', WPPL_APP . '/controllers');
+ }
+
+ if(!defined('WPPL_MODEL')){
+     define('WPPL_MODEL', WPPL_APP . '/models');
+ }
+
+ if(!defined('WPPL_ASSET')){
+     define('WPPL_ASSET', WPPL_URL . '/assets');
+ }
+
+ if(!defined('WPPL_CSS')){
+     define('WPPL_CSS', WPPL_ASSET . '/css');
+ }
+
+ if(!defined('WPPL_JS')){
+     define('WPPL_JS', WPPL_ASSET . '/js');
+ }
+
+ if(!defined('WPPL_DB_PREFIX')){
+     define('WPPL_DB_PREFIX', 'wppl');
+ }
+
+ if(!defined('WPPL_TIME_FORMAT')){
+     define('WPPL_TIME_FORMAT', 'Y-m-d H:i:s');
+ }
 
  if(!class_exists('WP_Plugin_Helper')) {
 	 class WP_Plugin_Helper {
