@@ -2,13 +2,13 @@
 
 /**
  * Plugin Name:       WordPress Plugin Library
- * Plugin URI:        https://wplibrary.thehusky.dev
+ * Plugin URI:        https://sorinmarta.com/projects/wp-plugin-library
  * Description:       A library that helps me and other developers to create other plugins easily
  * Version:           1.0.0
- * Requires at least: 5.2
+ * Requires at least: 6.0
  * Requires PHP:      7.4
- * Author:            Sorin Marta @ TheHuskyDev
- * Author URI:        https://thehusky.dev
+ * Author:            Sorin Marta
+ * Author URI:        https://sorinmarta.com
  */
 
 define('WPPL_URL', plugin_dir_url(__FILE__));
@@ -36,6 +36,18 @@ define('WPPL_URL', plugin_dir_url(__FILE__));
  if(!defined('WPPL_CONTROLLER')){
      define('WPPL_CONTROLLER', WPPL_APP . '/controllers');
  }
+
+if(!defined('WPPL_ABSTRACT')){
+    define('WPPL_ABSTRACT', WPPL_APP . '/abstracts');
+}
+
+if(!defined('WPPL_TRAIT')){
+    define('WPPL_TRAIT', WPPL_APP . '/traits');
+}
+
+if(!defined('WPPL_INTERFACE')){
+    define('WPPL_INTERFACE', WPPL_APP . '/interfaces');
+}
 
  if(!defined('WPPL_MODEL')){
      define('WPPL_MODEL', WPPL_APP . '/models');

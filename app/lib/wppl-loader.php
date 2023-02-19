@@ -3,63 +3,84 @@
 if(!class_exists('WPPL_Loader')) {
 	class WPPL_Loader {
 		public function __construct() {
-			$this->help();
 			$this->lib();
+            $this->help();
+            $this->traits();
+            $this->interfaces();
+            $this->abstracts();
 			$this->models();
 			$this->controllers();
 		}
 
 		/**
 		 * Requires all the library files
-		 *
-		 * @return $this
 		 */
-		private function lib() {
+		private function lib(): void
+        {
 			foreach ( $this->get_files( WPPL_LIB ) as $file ) {
 				require_once WPPL_LIB . "/$file";
 			}
-
-			return $this;
 		}
 
 		/**
 		 * Requires all the helpers
-		 *
-		 * @return $this
 		 */
-		private function help() {
+		private function help(): void
+        {
 			foreach ( $this->get_files( WPPL_HELPER ) as $file ) {
 				require_once WPPL_HELPER . "/$file";
 			}
-
-			return $this;
 		}
 
 		/**
 		 * Requires all the models
-		 *
-		 * @return $this
 		 */
-		private function models() {
+		private function models(): void
+        {
 			foreach ( $this->get_files( WPPL_MODEL ) as $file ) {
 				require_once WPPL_MODEL . "/$file";
 			}
-
-			return $this;
 		}
 
 		/**
 		 * Requires all the controllers
-		 *
-		 * @return $this
 		 */
-		private function controllers() {
+		private function controllers(): void
+        {
 			foreach ( $this->get_files( WPPL_CONTROLLER ) as $file ) {
 				require_once WPPL_CONTROLLER . "/$file";
 			}
-
-			return $this;
 		}
+
+        /**
+         * Requires all the abstract classes
+         */
+        private function abstracts(): void
+        {
+            foreach ( $this->get_files( WPPL_ABSTRACT ) as $file ) {
+                require_once WPPL_ABSTRACT . "/$file";
+            }
+        }
+
+        /**
+         * Requires all the traits
+         */
+        private function traits(): void
+        {
+            foreach ( $this->get_files( WPPL_TRAIT ) as $file ) {
+                require_once WPPL_TRAIT . "/$file";
+            }
+        }
+
+        /**
+         * Requires all the interfaces
+         */
+        private function interfaces(): void
+        {
+            foreach ( $this->get_files( WPPL_INTERFACE ) as $file ) {
+                require_once WPPL_INTERFACE . "/$file";
+            }
+        }
 
 		/**
 		 * Loops through a directory and returns an array of PHP files

@@ -83,7 +83,7 @@ This is an ongoing project as I'm going to keep develop on it as I find more thi
 ### Prerequisites
 
 * WordPress > 6.0.1
-* PHP > 8.1
+* PHP > 7.4
 
 ### Installation
 
