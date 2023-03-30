@@ -6,7 +6,7 @@
  * Description:       A library that helps me and other developers to create other plugins easily
  * Version:           1.0.0
  * Requires at least: 6.0
- * Requires PHP:      7.4
+ * Requires PHP:      8.0
  * Author:            Sorin Marta
  * Author URI:        https://sorinmarta.com
  */
