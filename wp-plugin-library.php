@@ -78,21 +78,12 @@ if( ! class_exists( 'WP_Plugin_Helper' ) ) {
 		 public function __construct() {
 			 $this->check_php_version();
 			 $this->check_wp_version();
-			 require WPPL_PATH . '/app/lib/wppl-loader.php';
+			 $this->load();
+
+			 wppl_dd( 'Hello' );
 
 //			 add_action( 'activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array( $this, 'activate' ) );
 //			 add_action( 'deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array( $this, 'deactivate' ) );
-		 }
-
-		 /**
-		  * Checks if the PHP version is compatible
-		  *
-		  * @return void
-		  */
-		 private function check_php_version(): void {
-			 if ( phpversion() < 7.4 ) {
-				 wp_die( __( 'PHP version cannot be lower than 7.4', WPPL_SLUG ) );
-			 }
 		 }
 
 		 /**
@@ -124,6 +115,23 @@ if( ! class_exists( 'WP_Plugin_Helper' ) ) {
 			 if ( $wp_version < 5.2 ) {
 				 wp_die( __( 'WordPress version cannot be lower than 5.2', WPPL_SLUG ) );
 			 }
+		 }
+
+		 /**
+		  * Checks if the PHP version is compatible
+		  *
+		  * @return void
+		  */
+		 private function check_php_version(): void {
+			 if ( phpversion() < 7.4 ) {
+				 wp_die( __( 'PHP version cannot be lower than 7.4', WPPL_SLUG ) );
+			 }
+		 }
+
+		 private function load(): void {
+			 require WPPL_PATH . '/app/lib/wppl-loader.php';
+
+			 new WPPL_Loader();
 		 }
 	 }
 

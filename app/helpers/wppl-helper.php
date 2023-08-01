@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
 if( ! class_exists( 'WPPL_Helper' ) ){
 	class WPPL_Helper{
 
