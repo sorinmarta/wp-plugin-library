@@ -1,15 +1,14 @@
 <?php
 
-if(!class_exists('WPPL_View')){
+if( ! class_exists( 'WPPL_View' ) ){
     class WPPL_View{
         private string $view;
         private $with;
 
-        public function __construct(string $view, $with = false)
-        {
+        public function __construct( string $view, $with = false ) {
             $this->view = $view;
 
-            if($with){
+            if( $with ){
                 $this->with = $with;
             }
 
@@ -21,14 +20,12 @@ if(!class_exists('WPPL_View')){
          *
          * @return void
          */
-
-        private function add_notifications(): void
-        {
-            if(isset($_COOKIE['wppl_redirect_type']) && isset($_COOKIE['wppl_redirect_message'])){
-                $type = $this->generate_message_class($_COOKIE['wppl_redirect_type']);
+        private function add_notifications(): void {
+            if( isset( $_COOKIE['wppl_redirect_type'] ) && isset( $_COOKIE['wppl_redirect_message'] ) ){
+                $type = $this->generate_message_class( $_COOKIE['wppl_redirect_type'] );
                 $message = $_COOKIE['wppl_redirect_message'];
 
-                $this->show_redirect_message($type, $message);
+                $this->show_redirect_message( $type, $message );
             }
         }
 
@@ -39,8 +36,7 @@ if(!class_exists('WPPL_View')){
          * @param string $message
          * @return void
          */
-
-        private function show_redirect_message(string $type, string $message): void
+        private function show_redirect_message( string $type, string $message ): void
         {
             ?>
             <div class="wppl-message-container">
@@ -56,16 +52,16 @@ if(!class_exists('WPPL_View')){
             <?php
         }
 
-        /**
-         * Generate which HTML class to assign
-         *
-         * @param string $type
-         * @return void
-         */
-
-        private function generate_message_class(string $type): string
+	    /**
+	     * Generate which HTML class to assign
+	     *
+	     * @param string $type
+	     *
+	     * @return string
+	     */
+        private function generate_message_class( string $type ): string
         {
-            switch ($type){
+            switch ( $type ){
                 case 'success':
                     return 'wppl-success';
                 case 'alert':
@@ -78,20 +74,18 @@ if(!class_exists('WPPL_View')){
         /**
          * Renders the page with the values passed
          *
-         * @return mixed
+         * @return void
          */
-
-         private function render()
-         {
+         private function render(): void {
              $this->add_notifications();
 
-             if(!empty($this->with)){
-                 foreach($this->with as $key => $value){
+             if( ! empty( $this->with ) ){
+                 foreach( $this->with as $key => $value ){
                      ${$key} = $value;
                  }
              }
 
-             return require WPPL_PATH . '/app/views/' . $this->view . '.php';
+	         require WPPL_PATH . '/app/views/' . $this->view . '.php';
          }
     }
 }

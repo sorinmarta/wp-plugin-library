@@ -7,10 +7,10 @@
  *
  * @return bool
  */
-if(!function_exists('wppl_dd')){
-	function wppl_dd($body): bool
+if( ! function_exists( 'wppl_dd' ) ){
+	function wppl_dd( $body ): bool
 	{
-		return Helpers\WPPL_Helper::dd($body);
+		return WPPL_Helper::dd( $body );
 	}	
 }
 
@@ -23,10 +23,10 @@ if(!function_exists('wppl_dd')){
  *
  * @return bool
  */
-if(!function_exists('wppl_redirect')){
-	function wppl_redirect($url, $type = null, $message = null): bool
+if( ! function_exists( 'wppl_redirect' ) ){
+	function wppl_redirect( $url, $type = null, $message = null ): bool
 	{
-		return Helpers\WPPL_Helper::redirect($url, $type, $message);
+		return WPPL_Helper::redirect( $url, $type, $message );
 	}
 }
 
@@ -53,8 +53,8 @@ if(!function_exists('wppl_add_or_update_option')) {
  *
  * @return bool
  */
-if(!function_exists('wppl_add_or_update_user_meta')) {
+if( ! function_exists( 'wppl_add_or_update_user_meta' ) ) {
 	function wppl_add_or_update_user_meta( $user_id, $tag, $value ): bool {
-		return Helpers\WPPL_Helper::add_or_update_user_meta( $user_id, $tag, $value );
+		return WPPL_Helper::add_or_update_user_meta( $user_id, $tag, $value );
 	}
 }

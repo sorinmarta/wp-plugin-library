@@ -140,9 +140,9 @@ Distributed under the MIT License.
 <!-- CONTACT -->
 ## Contact
 
-Sorin Marta ([TheHuskyDev](https://thehusky.dev))
+Sorin Marta
 
-Project Link: [https://thehusky.dev/projects/wordpress-library](https://thehusky.dev/projects/wordpress-library)
+Project Link: [https://tadamus.com](https://tadamus.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
