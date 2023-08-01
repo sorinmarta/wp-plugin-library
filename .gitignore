@@ -1,2 +1,4 @@
+/composer.lock
 /.idea
 /test.php
+/app/controllers/test-controller.php
