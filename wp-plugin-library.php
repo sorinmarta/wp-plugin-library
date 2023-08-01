@@ -80,8 +80,6 @@ if( ! class_exists( 'WP_Plugin_Helper' ) ) {
 			 $this->check_wp_version();
 			 $this->load();
 
-			 wppl_dd( 'Hello' );
-
 //			 add_action( 'activate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array( $this, 'activate' ) );
 //			 add_action( 'deactivate_'. WPPL_SLUG .'/'. WPPL_SLUG .'.php', array( $this, 'deactivate' ) );
 		 }
@@ -128,6 +126,11 @@ if( ! class_exists( 'WP_Plugin_Helper' ) ) {
 			 }
 		 }
 
+		 /**
+		  * Loads all the plugin files
+		  *
+		  * @return void
+		  */
 		 private function load(): void {
 			 require WPPL_PATH . '/app/lib/wppl-loader.php';
 
