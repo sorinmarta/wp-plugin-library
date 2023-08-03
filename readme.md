@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://tadamus.com">
-    <img src="http://tadamus.com/wp-content/uploads/2023/08/Tadamus-logo-300-60-px.png" alt="Logo" width="300" height="60">
+    <img src="http://tadamus.com/wp-content/uploads/2023/08/Tadamus-logo-grey-300-x-47.png" alt="Logo" width="300" height="47">
   </a>
 
 <h3 align="center">WP Plugin Library</h3>
