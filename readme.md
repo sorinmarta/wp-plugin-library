@@ -5,8 +5,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://thehusky.dev">
-    <img src="https://thehusky.dev/wp-content/uploads/2022/07/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://tadamus.com">
+    <img src="http://tadamus.com/wp-content/uploads/2023/08/Tadamus-logo-300-60-px.png" alt="Logo" width="300" height="60">
   </a>
 
 <h3 align="center">WP Plugin Library</h3>
