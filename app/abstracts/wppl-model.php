@@ -90,8 +90,7 @@ if( ! class_exists( 'WPPL_Model' ) ){
             return false;
         }
 
-        protected function create_table( $table_name, $fields ): void
-        {
+        protected function create_table( $table_name, $fields ): void {
             if ( ! $this->table_exists( $table_name ) ) {
                 global $wpdb;
 

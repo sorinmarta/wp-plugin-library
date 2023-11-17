@@ -33,8 +33,7 @@ if( ! class_exists( 'WPPL_Loader' ) ) {
 		 * @return void
 		 *
 		 */
-		private function require_child_files_once( $dir ): void
-		{
+		private function require_child_files_once( $dir ): void {
 			foreach ( $this->get_files( $dir ) as $file ) {
 				require_once $file;
 			}
@@ -50,8 +49,7 @@ if( ! class_exists( 'WPPL_Loader' ) ) {
 		 * @return array
 		 *
 		 */
-		private function get_files( $dir ): array
-		{
+		private function get_files( $dir ): array {
 			$dir_object = new \DirectoryIterator( $dir );
 			$returnable = array();
 

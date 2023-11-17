@@ -8,8 +8,7 @@
  * @return bool
  */
 if( ! function_exists( 'wppl_dd' ) ){
-	function wppl_dd( $body ): bool
-	{
+	function wppl_dd( $body ): bool {
 		return WPPL_Helper::dd( $body );
 	}	
 }
@@ -24,8 +23,7 @@ if( ! function_exists( 'wppl_dd' ) ){
  * @return bool
  */
 if( ! function_exists( 'wppl_redirect' ) ){
-	function wppl_redirect( $url, $type = null, $message = null ): bool
-	{
+	function wppl_redirect( $url, $type = null, $message = null ): bool {
 		return WPPL_Helper::redirect( $url, $type, $message );
 	}
 }

@@ -36,8 +36,7 @@ if( ! class_exists( 'WPPL_View' ) ){
          * @param string $message
          * @return void
          */
-        private function show_redirect_message( string $type, string $message ): void
-        {
+        private function show_redirect_message( string $type, string $message ): void {
             ?>
             <div class="wppl-message-container">
                 <div class="wppl-notice <?php echo $type; ?>">
@@ -59,8 +58,7 @@ if( ! class_exists( 'WPPL_View' ) ){
 	     *
 	     * @return string
 	     */
-        private function generate_message_class( string $type ): string
-        {
+        private function generate_message_class( string $type ): string {
             switch ( $type ){
                 case 'success':
                     return 'wppl-success';
